@@ -33,13 +33,13 @@ class RNN(nn.Module):
         # inputs shape: (seq_len, batch, input_dim)
         _, hidden = self.rnn(inputs)  # hidden shape: (num_layers, batch, hidden_dim)
         
-        # 取最后一层的hidden state
+        # Get the hidden state from the last layer
         last_hidden = hidden[-1]  # shape: (batch, hidden_dim)
         
-        # 通过线性层得到输出
+        # Pass through linear layer to get output
         output = self.W(last_hidden)  # shape: (batch, 5)
         
-        # 应用softmax得到概率分布
+        # Apply softmax to get probability distribution
         predicted_vector = self.softmax(output)
         
         return predicted_vector
